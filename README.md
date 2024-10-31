@@ -5,7 +5,7 @@ This repositery is for enterprise automation policy
 
 
 ****** config_data.env *********
-######## sample file ########
+********* sample file *********
 
 ADMIN_USERNAME=
 ADMIN_PASSWORD=
