@@ -1,6 +1,11 @@
 # Exclude .venv folder
 !.venv/
+
+# Ignore everything inside the .idea directory
 .idea/*
-# Exclude environment configuration file
+
+# Ignore the environment configuration file
 config_data.env
-config_datas/
+
+# Ignore everything inside the config_datas directory
+config_datas/*
