@@ -3,3 +3,4 @@
 .idea/*
 # Exclude environment configuration file
 config_data.env
+config_datas/
