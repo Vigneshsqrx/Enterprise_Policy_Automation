@@ -13,6 +13,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from datetime import datetime
+import requests
 
 #########################################################################################
 # Load environment variables from the .env file
@@ -33,13 +34,8 @@ policy_type = os.getenv("POLICY_TYPE")
 browser = os.getenv("BROWSER", "chrome").lower()
 #########################################################################################
 tag = "Site Visit"
-ai_prompt = """Block Site visit webpage has registrant addresses:
-- 9 north buona vista drive , #02-01 Meteropolic Tower I     
-- 1601 Willow Rd
-- DomainsByProxy.com 100 S. Mill Ave, Suite 1600
-- P.O. Box 8102
-- 2145 Hamilton Avenue,"""
-policy = "page.url.whois.registrant_address"
+ai_prompt = "Block site visits know malicious"
+policy = "page.url.known_malicious"
 ##############################################################################
 def print_details():
     current_file = os.path.basename(__file__)
@@ -341,18 +337,36 @@ def check_block_status():
         print(f"Website not blocked: {driver.current_url}")
         print("********************************************")
 
-def open_sites():
-    websites = [
-        "https://sqrx.com/usecases",
-        "https://www.flipkart.com/account/login?ret=/",
-        "https://www.meta.com",
-        "https://x.com",
-        "https://www.amazon.com",
-        "https://www.ebay.com",
-        "https://www.jio.com",
-        "https://search.brave.com"
+##############################################################################
+def fetch_openphish_urls(no_of_urls):
+    url = "https://www.openphish.com/feed.txt"
+    response = requests.get(url)
 
-    ]
+    if response.status_code == 200:
+        # Split the content by lines
+        urls = response.text.splitlines()
+
+        # Get the first 'no_of_urls' URLs
+        first_urls = urls[:no_of_urls]
+
+        # Store the URLs in a dictionary
+        websites = {}
+        for index, url in enumerate(first_urls, start=1):
+            websites[index] = url
+
+        return list(websites.values())  # Return the list of URLs
+    else:
+        print(f"Failed to retrieve the feed. Status code: {response.status_code}")
+        return []
+
+##############################################################################
+def open_sites():
+    # Fetch the first 10 URLs from OpenPhish feed
+    websites = fetch_openphish_urls(10)
+
+    additional_websites = ["https://www.google.com", "https://www.facebook.com"]
+
+    websites = additional_websites + websites
 
 
     time.sleep(3)

@@ -57,6 +57,14 @@ def print_details():
     print(f"Browser name: {browser_name}")
     print(f"Browser version: {browser_version}")
     print(f"Platform name: {platform_name}")
+    # Extract the directory containing the extension name
+    extension_dir = os.path.dirname(extension_path)
+
+    # Extract the extension name by splitting based on the last backslash
+    extension_name = os.path.basename(extension_dir)
+
+    # # Print the extension name
+    print("Extension Used:", extension_name)
     print("--------------------------------------------------------------------------------------------------")
 ##############################################################################
 driver = None
