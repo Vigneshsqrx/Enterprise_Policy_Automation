@@ -33,8 +33,8 @@ policy_type = os.getenv("POLICY_TYPE")
 browser = os.getenv("BROWSER", "chrome").lower()
 #########################################################################################
 tag = "Site Visit"
-ai_prompt = "Block search engine websites"
-policy = "page.url.category"
+ai_prompt = "Block visits to websites that use public IP addresses instead of domain names in their URLs."
+policy = "page.url.is_public_ip"
 ##############################################################################
 def print_details():
     current_file = os.path.basename(__file__)
@@ -327,28 +327,22 @@ def check_block_status():
         print("********************************************")
 
 def open_sites():
-
     websites = [
-        'https://www.google.com',
-        'https://www.bing.com',
-        'https://www.yahoo.com',
-        'https://www.duckduckgo.com',
-        'https://www.ecosia.org',
-        'https://www.qwant.com',
-        'https://www.startpage.com',
-        'https://search.brave.com',
-        'https://www.yandex.com',
-        'https://www.rambler.ru',
-        'https://www.baidu.com',
-        'https://www.sogou.com',
-        'https://www.naver.com',
-        'https://www.daum.net',
-        'https://www.kvasir.no',
-        'https://www.yahoo.co.jp',
-        'https://www.goo.ne.jp',
-        'https://www.lycos.com',
-
+        "http://194.208.142.36:50001/",
+        "http://194.208.132.74:50001/",
+        "http://194.208.140.200:50001/",
+        "https://www.facebook.com",
+        "https://www.google.com",
+        "http://198.27.110.77:50006",
+        "http://198.244.247.149:50006",
+        "http://198.50.205.159:50006",
+        "http://198.27.110.77:50006",
+        "http://198.58.115.171:50006",
+        "http://198.244.247.145:50006/pentaho/Login;jsessionid=FA1E37990DBF53C06FF579E76298791C",
+        "http://198.50.205.131:50006/",
+        "http://198.144.164.66:50006/"
     ]
+
 
     time.sleep(3)
 

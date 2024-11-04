@@ -33,8 +33,8 @@ policy_type = os.getenv("POLICY_TYPE")
 browser = os.getenv("BROWSER", "chrome").lower()
 #########################################################################################
 tag = "Site Visit"
-ai_prompt = "Block search engine websites"
-policy = "page.url.category"
+ai_prompt = "Block site visit if the site is hosted on a free hosting service"
+policy = "page.url.is_free_hosting"
 ##############################################################################
 def print_details():
     current_file = os.path.basename(__file__)
@@ -327,27 +327,31 @@ def check_block_status():
         print("********************************************")
 
 def open_sites():
-
     websites = [
+        'https://example-project.glitch.me',
         'https://www.google.com',
-        'https://www.bing.com',
-        'https://www.yahoo.com',
-        'https://www.duckduckgo.com',
-        'https://www.ecosia.org',
-        'https://www.qwant.com',
-        'https://www.startpage.com',
-        'https://search.brave.com',
-        'https://www.yandex.com',
-        'https://www.rambler.ru',
-        'https://www.baidu.com',
-        'https://www.sogou.com',
-        'https://www.naver.com',
-        'https://www.daum.net',
-        'https://www.kvasir.no',
-        'https://www.yahoo.co.jp',
-        'https://www.goo.ne.jp',
-        'https://www.lycos.com',
-
+        'https://codaimbot.web.app/',
+        'https://mapocaco.firebaseapp.com/',
+        'https://dcemecha.weebly.com',
+        'https://coba.indi7.workers.dev/',
+        'https://electriccitycoffee.square.site/',
+        'https://dk.000webhost.com/',
+        'https://ornellablog.000webhostapp.com/',
+        'https://eatsushibox.square.site/',
+        'https://alinamin.pages.dev/',
+        'https://test-ucr-sample.pantheonsite.io',
+        'https://example.repl.co',
+        'https://bafybeib7lyimozj46dotjpzapp33wkig5g4zdcusljwaslwuv3djm2lzsy.ipfs.dweb.link/',
+        'https://example.start.page',
+        'https://caddguru.wordpress.com',
+        'https://example.vercel.app',
+        'https://unblocked-games.s3.amazonaws.com/drift/index.html',
+        'https://docs.railway.app',
+        'https://example.wixsite.com/',
+        'https://resume.github.io/',
+        'http://ftts.duckdns.org/mobile/',
+        'https://pub-ce0f3f22b1964367bd1b54acaf2e806d.r2.dev/olaola.html',
+        'https://3pbco.webflow.io/'
     ]
 
     time.sleep(3)

@@ -33,8 +33,8 @@ policy_type = os.getenv("POLICY_TYPE")
 browser = os.getenv("BROWSER", "chrome").lower()
 #########################################################################################
 tag = "Site Visit"
-ai_prompt = "Block search engine websites"
-policy = "page.url.category"
+ai_prompt = "Block http protocol websites"
+policy = "page.url.protocol"
 ##############################################################################
 def print_details():
     current_file = os.path.basename(__file__)
@@ -327,26 +327,13 @@ def check_block_status():
         print("********************************************")
 
 def open_sites():
-
     websites = [
+        'http://httpforever.com/',
         'https://www.google.com',
-        'https://www.bing.com',
-        'https://www.yahoo.com',
-        'https://www.duckduckgo.com',
-        'https://www.ecosia.org',
-        'https://www.qwant.com',
-        'https://www.startpage.com',
-        'https://search.brave.com',
-        'https://www.yandex.com',
-        'https://www.rambler.ru',
-        'https://www.baidu.com',
-        'https://www.sogou.com',
-        'https://www.naver.com',
-        'https://www.daum.net',
-        'https://www.kvasir.no',
-        'https://www.yahoo.co.jp',
-        'https://www.goo.ne.jp',
-        'https://www.lycos.com',
+        'http://www.ideunom.ac.in',
+        'http://openphish.com/',
+        'http://testhtml5.vulnweb.com/#/popular',
+        'http://testasp.vulnweb.com/Login.asp?RetURL=%2FDefault%2Easp%3F',
 
     ]
 

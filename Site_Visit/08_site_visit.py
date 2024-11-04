@@ -33,8 +33,8 @@ policy_type = os.getenv("POLICY_TYPE")
 browser = os.getenv("BROWSER", "chrome").lower()
 #########################################################################################
 tag = "Site Visit"
-ai_prompt = "Block search engine websites"
-policy = "page.url.category"
+ai_prompt = "Block site visit to top level domain "
+policy = "page.url.is_top_domain"
 ##############################################################################
 def print_details():
     current_file = os.path.basename(__file__)
@@ -327,28 +327,21 @@ def check_block_status():
         print("********************************************")
 
 def open_sites():
-
     websites = [
-        'https://www.google.com',
-        'https://www.bing.com',
-        'https://www.yahoo.com',
-        'https://www.duckduckgo.com',
-        'https://www.ecosia.org',
-        'https://www.qwant.com',
-        'https://www.startpage.com',
-        'https://search.brave.com',
-        'https://www.yandex.com',
-        'https://www.rambler.ru',
-        'https://www.baidu.com',
-        'https://www.sogou.com',
-        'https://www.naver.com',
-        'https://www.daum.net',
-        'https://www.kvasir.no',
-        'https://www.yahoo.co.jp',
-        'https://www.goo.ne.jp',
-        'https://www.lycos.com',
-
+        # Google domains and subdomains
+        'https://www.apple.com/',
+        'https://www.google.com/',
+        'https://www.facebook.com/',
+        'https://www.amazon.com/',
+        'https://www.microsoft.com/',
+        'https://www.amazon.in/',
+        'https://www.harvard.edu/',
+        'https://www.annauniv.edu/',
+        'https://www.linkedin.com/',
+        'https://www.edx.org/',
+        'https://en.wikipedia.org/'
     ]
+
 
     time.sleep(3)
 
