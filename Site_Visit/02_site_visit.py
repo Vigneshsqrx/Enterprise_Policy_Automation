@@ -276,6 +276,8 @@ def site_visit_policies_creation():
 
     print("AI PROMPT::", ai_prompt)
     print(tag, "New Policy Created")
+    print("   ")
+    print("Policy::",policy)
 
     policy_list_page_url = "/enterprise/#/policy"
     policy_page = tenant_url + policy_list_page_url

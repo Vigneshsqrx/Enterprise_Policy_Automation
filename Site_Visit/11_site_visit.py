@@ -33,8 +33,8 @@ policy_type = os.getenv("POLICY_TYPE")
 browser = os.getenv("BROWSER", "chrome").lower()
 #########################################################################################
 tag = "Site Visit"
-ai_prompt = "Block site visit to top level domain "
-policy = "page.url.is_top_domain"
+ai_prompt = "Block site visit page url 'https://sqrx.com/usecases' , 'https://www.amazon.in/gp/cart/view.html?ref_=nav_cart' , 'https://www.flipkart.com/account/login?ret=/','https://www.jio.com/selfcare/login/'"
+policy = "page.url"
 ##############################################################################
 def print_details():
     current_file = os.path.basename(__file__)
@@ -330,18 +330,12 @@ def check_block_status():
 
 def open_sites():
     websites = [
-        # Google domains and subdomains
-        'https://www.apple.com/',
-        'https://www.google.com/',
-        'https://www.facebook.com/',
-        'https://www.amazon.com/',
-        'https://www.microsoft.com/',
-        'https://www.amazon.in/',
-        'https://www.harvard.edu/',
-        'https://www.annauniv.edu/',
-        'https://www.linkedin.com/',
-        'https://www.edx.org/',
-        'https://en.wikipedia.org/'
+        "https://sqrx.com/usecases",
+        "https://www.amazon.in/gp/cart/view.html?ref_=nav_cart",
+        "https://www.flipkart.com/account/login?ret=/",
+        "https://www.jio.com/selfcare/login/",
+        "https://apple.com",
+        "https://airtel.com"
     ]
 
 

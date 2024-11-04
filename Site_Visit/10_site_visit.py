@@ -33,8 +33,8 @@ policy_type = os.getenv("POLICY_TYPE")
 browser = os.getenv("BROWSER", "chrome").lower()
 #########################################################################################
 tag = "Site Visit"
-ai_prompt = "Block site visit to top level domain "
-policy = "page.url.is_top_domain"
+ai_prompt = "Block site visits to websites originating from or hosted in the United States, India, China, Russia, France, United Arab Emirates, Germany, Finland, Hong Kong, Malaysia, Sri Lanka, Iran, and Afghanistan. Use DNS A record country codes"
+policy = "page.url.dns_a_record_country_codes"
 ##############################################################################
 def print_details():
     current_file = os.path.basename(__file__)
@@ -330,18 +330,19 @@ def check_block_status():
 
 def open_sites():
     websites = [
-        # Google domains and subdomains
-        'https://www.apple.com/',
-        'https://www.google.com/',
-        'https://www.facebook.com/',
-        'https://www.amazon.com/',
-        'https://www.microsoft.com/',
-        'https://www.amazon.in/',
-        'https://www.harvard.edu/',
-        'https://www.annauniv.edu/',
-        'https://www.linkedin.com/',
-        'https://www.edx.org/',
-        'https://en.wikipedia.org/'
+        "https://x.com",
+        "https://www.india.gov.in/",
+        "https://baidu.com",
+        "https://yandex.cloud/",
+        "https://korea-dpr.com/",
+        "https://www.dsc.gov.ae/en-us/Pages/default.aspx",
+        "https://www.destatis.de/",
+        "https://www.skyhost.pk/",
+        "https://www.gov.sg/",
+        "https://malaysiavisa.imi.gov.my/evisa/evisa.jsp",
+        "https://www.gov.lk/",
+        "https://en.mfa.ir/",
+        "https://moi.gov.af/en"
     ]
 
 

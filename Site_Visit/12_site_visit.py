@@ -33,8 +33,13 @@ policy_type = os.getenv("POLICY_TYPE")
 browser = os.getenv("BROWSER", "chrome").lower()
 #########################################################################################
 tag = "Site Visit"
-ai_prompt = "Block site visit to top level domain "
-policy = "page.url.is_top_domain"
+ai_prompt = """Block Site visit webpage has registrant addresses:
+- 9 north buona vista drive , #02-01 Meteropolic Tower I     
+- 1601 Willow Rd
+- DomainsByProxy.com 100 S. Mill Ave, Suite 1600
+- P.O. Box 8102
+- 2145 Hamilton Avenue,"""
+policy = "page.url.whois.registrant_address"
 ##############################################################################
 def print_details():
     current_file = os.path.basename(__file__)
@@ -330,18 +335,15 @@ def check_block_status():
 
 def open_sites():
     websites = [
-        # Google domains and subdomains
-        'https://www.apple.com/',
-        'https://www.google.com/',
-        'https://www.facebook.com/',
-        'https://www.amazon.com/',
-        'https://www.microsoft.com/',
-        'https://www.amazon.in/',
-        'https://www.harvard.edu/',
-        'https://www.annauniv.edu/',
-        'https://www.linkedin.com/',
-        'https://www.edx.org/',
-        'https://en.wikipedia.org/'
+        "https://sqrx.com/usecases",
+        "https://www.flipkart.com/account/login?ret=/",
+        "https://www.meta.com",
+        "https://x.com",
+        "https://www.amazon.com",
+        "https://www.ebay.com",
+        "https://www.jio.com",
+        "https://search.brave.com"
+
     ]
 
 

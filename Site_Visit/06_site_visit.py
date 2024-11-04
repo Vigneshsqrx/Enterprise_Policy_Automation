@@ -104,6 +104,8 @@ def login_function():
     print("Logged In")
     print("Current URL ::", tenant_url)
     print("Admin Email ::", admin_username)
+    print("   ")
+    print("Policy::",policy)
 
     header_element = WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located((By.XPATH, "//h1[normalize-space()='Detections']"))
