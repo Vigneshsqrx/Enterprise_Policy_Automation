@@ -185,7 +185,7 @@ def check_for_existing_policies():
         print(f"{row_count} existing polices deleted.")
 
 ##############################################################################
-def site_visit_policies_creation():
+def site_content_policies_creation():
     site_conntent = "/enterprise/#/site.content/policy"
 
     site_content_page = tenant_url + site_conntent
@@ -386,7 +386,7 @@ print_details()
 
 login_function()
 check_for_existing_policies()
-site_visit_policies_creation()
+site_content_policies_creation()
 
 assigned_user_login()
 open_sites()

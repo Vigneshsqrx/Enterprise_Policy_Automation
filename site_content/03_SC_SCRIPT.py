@@ -33,8 +33,8 @@ policy_type = os.getenv("POLICY_TYPE")
 browser = os.getenv("BROWSER", "chrome").lower()
 #########################################################################################
 tag = "Site Content"
-ai_prompt = "Block Page content category News and Media"
-policy = "page.content.category"
+ai_prompt = "Block websites that QR Code site content url category is search engine websites."
+policy = "page.content.qr_code.final_url.category"
 ##############################################################################
 def print_details():
     current_file = os.path.basename(__file__)
@@ -185,7 +185,7 @@ def check_for_existing_policies():
         print(f"{row_count} existing polices deleted.")
 
 ##############################################################################
-def site_content_policies_creation():
+def site_visit_policies_creation():
     site_conntent = "/enterprise/#/site.content/policy"
 
     site_content_page = tenant_url + site_conntent
@@ -316,80 +316,84 @@ def assigned_user_login():
     )
     continue_button.click()
 
+
+
     print("                           ")
     print("Logged In As Assigned User")
     print("Current URL ::", tenant_url)
     print("Assigned User Email ::", assigned_username)
 #####################################################################################################################
 def check_block_status():
-    try:
-        main_title = driver.find_element(By.CSS_SELECTOR, "#main-title").text
-        main_title == 'Content Blocked'
-        blocked_url = driver.find_element(By.CSS_SELECTOR, "#url").text
-        print("  ")
-        print(blocked_url, " ", f"Website blocked by Square-X: {driver.current_url}")
+    text = "Blocked By SquareX"
 
+    # Helper function to check if the text is visible
+    def is_text_visible(text):
+        try:
+            # Find elements containing the text
+            elements = driver.find_elements(By.XPATH, f"//*[contains(text(), '{text}')]")
+            for element in elements:
+                # Check if the element is visible
+                if element.is_displayed():
+                    return True
+            return False
+        except Exception as e:
+            print(f"Error while checking text visibility: {e}")
+            return False
 
-    except NoSuchElementException:
-        print("  ")
-        print("********************************************")
-        print(f"Website not blocked: {driver.current_url}")
-        print("********************************************")
+    # Function to wait for the text to appear, either within 10 seconds or up to 60 seconds
+    def wait_for_text(timeout):
+        wait_time = 0
+        check_interval = 1  # check every second
+        while wait_time < timeout:
+            if is_text_visible(text):
+                return True  # Text found
+            time.sleep(check_interval)
+            wait_time += check_interval
+        return False  # Timeout reached, text not found
+
+    # First, try to find the text within 10 seconds
+    if wait_for_text(10):
+        print("QR Code Blocked")
+    else:
+        # If not found within 10 seconds, wait up to 60 seconds
+        print("Waiting up to 60 seconds for blocked text...")
+        if wait_for_text(60):
+            print("QR Code Blocked")
+        else:
+            print("QR Code Not Blocked")
+
 
 def open_sites():
-    websites = [
-        'https://timesofindia.indiatimes.com',
-        'https://ndtv.com',
-        'https://www.indiatoday.in',
-        'https://www.news18.com',
-        'https://www.firstpost.com',
-        'https://www.timesofisrael.com',
-        'https://www.nytimes.com',
-        'https://www.texastribune.org',
-        'https://www.livemint.com',
-        'https://www.globaltimes.cn',
-        'https://www.cgtn.com',
-        'https://www.rt.com',
-        'https://www.themoscowtimes.com',
-        'https://tass.com',
-        'https://www.aljazeera.com',
-    ]
+    url_1 = "https://www.the-qrcode-generator.com/"
+    driver.get(url_1)
+
+    field_button = WebDriverWait(driver, 10).until(
+        EC.visibility_of_element_located(
+            (By.XPATH, "/html/body/section[2]/div/div[1]/div[2]/div/div[1]/div/input"))
+    )
+    field_button.click()
+
+    field_button.send_keys("https://www.google.com")
 
     time.sleep(3)
 
-    # Loop through the remaining websites, open each in a new tab, and check for block status
-    for website in websites[0:]:
-        # Open a new tab for the website
+    check_block_status()
 
-        driver.execute_script("window.open('about:blank', '_blank');")
 
-        # Switch to the newly opened tab (latest tab)
-        driver.switch_to.window(driver.window_handles[-1])
 
-        driver.get(website)
-
-        time.sleep(3)  # Wait for the website to load
-
-        # Check if the website is blocked or not
-        check_block_status()
-
-        # Close the current tab after checking
-        driver.close()
-
-        # Switch back to the first tab (to maintain clean navigation)
-        driver.switch_to.window(driver.window_handles[0])
-
-        time.sleep(2)
 
 #########################################################################################
 print_details()
 
 login_function()
 check_for_existing_policies()
-site_content_policies_creation()
+site_visit_policies_creation()
 
 assigned_user_login()
+time.sleep(2)
+
 open_sites()
+
 
 
 #########################################################################################
