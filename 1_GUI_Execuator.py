@@ -11,7 +11,7 @@ selected_folder = ""
 
 
 # Load environment variables from the .env file
-env_file = "config_data.env"
+env_file = "./config_data.env"
 if os.path.exists(env_file):
     load_dotenv(env_file)
 else:
@@ -112,7 +112,13 @@ def browse_extension_folder():
         entry_chrome_ext.delete(0, tk.END)
         entry_chrome_ext.insert(0, foldername)
 
+#########################################################################################
+def execute_scripts_one_by_one():
+    print("")
 
+
+#########################################################################################
+#########################################################################################
 def execute_selected_script():
     selected_item = script_tree.selection()
     if selected_item:
@@ -245,6 +251,8 @@ entry_chrome_ext = tk.Entry(content_frame, width=50)
 entry_chrome_ext.grid(row=6, column=1, padx=10, pady=5)
 tk.Button(content_frame, text="Browse", command=browse_extension_folder).grid(row=6, column=2, padx=10, pady=5)
 
+tk.Button(content_frame, text="Execute All", command=execute_scripts_one_by_one).grid(row=7, column=2, padx=10, pady=5)
+
 tk.Label(content_frame, text="Browser:").grid(row=7, column=0, padx=10, pady=5, sticky='e')
 entry_browser = tk.Entry(content_frame, width=50)
 entry_browser.grid(row=7, column=1, padx=10, pady=5)
@@ -273,6 +281,8 @@ script_tree.bind("<<TreeviewSelect>>", on_tree_selection)
 # Create a text widget for displaying AI Prompts below the Treeview
 ai_prompt_text = tk.Text(content_frame, height=8, width=80)
 ai_prompt_text.grid(row=11, column=0, columnspan=3, padx=10, pady=5, sticky='nsew')
+
+
 
 # Add the text widget to the output tab
 output_text = tk.Text(output_tab, wrap=tk.WORD)

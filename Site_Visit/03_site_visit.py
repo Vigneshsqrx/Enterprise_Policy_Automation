@@ -210,14 +210,14 @@ def site_visit_policies_creation():
         )
         lua_option.click()
 
-        print("*******************")
+        print("-------------------")
         print("LUA Method Selected")
-        print("*******************")
+        print("-------------------")
 
     else:
-        print("*********************")
+        print("---------------------")
         print("Ruler Method Selected")
-        print("*********************")
+        print("---------------------")
 
     ask_ai_to_generate_policy = WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located(
@@ -324,7 +324,7 @@ def assigned_user_login():
 def check_block_status():
     try:
         main_title = driver.find_element(By.CSS_SELECTOR, "#main-title").text
-        main_title == 'Content Blocked'
+        main_title == "Content Blocked"
         blocked_url = driver.find_element(By.CSS_SELECTOR, "#url").text
         print("  ")
         print(blocked_url, " ", f"Website blocked by Square-X: {driver.current_url}")

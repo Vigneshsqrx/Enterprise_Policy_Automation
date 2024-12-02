@@ -216,14 +216,14 @@ def site_visit_policies_creation():
         )
         lua_option.click()
 
-        print("*******************")
+        print("-------------------")
         print("LUA Method Selected")
-        print("*******************")
+        print("-------------------")
 
     else:
-        print("*********************")
+        print("---------------------")
         print("Ruler Method Selected")
-        print("*********************")
+        print("---------------------")
 
     ask_ai_to_generate_policy = WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located(
